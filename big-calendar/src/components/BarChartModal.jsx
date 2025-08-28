@@ -11,28 +11,34 @@ export default function BarChartModal() {
   const data = events[selectedDate];
 
   return (
-    <div className="absolute top-24 left-1/2 transform -translate-x-1/2 bg-white p-6 border border-gray-300 shadow-lg rounded-lg z-50">
-      <h2 className="text-xl font-semibold mb-4">Data for {selectedDate}</h2>
-      {!data ? (
-        <div className="text-center py-8">
-          <div className="text-yellow-600 text-lg mb-2">⚠️</div>
-          <p className="text-gray-600">No data found for the selected date.</p>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-2xl w-full mx-4">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Data for {selectedDate}</h2>
+        {!data ? (
+          <div className="text-center py-12">
+            <div className="text-yellow-500 text-4xl mb-4">⚠️</div>
+            <p className="text-gray-600 text-lg">No data found for the selected date.</p>
+          </div>
+        ) : (
+          <div className="flex justify-center mb-6">
+            <BarChart width={500} height={300} data={data}>
+              <CartesianGrid stroke="#e5e7eb" />
+              <XAxis dataKey="user" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="value" fill="#3b82f6" />
+            </BarChart>
+          </div>
+        )}
+        <div className="text-center">
+          <button 
+            onClick={() => dispatch(closeModal())}
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+          >
+            Close
+          </button>
         </div>
-      ) : (
-        <BarChart width={500} height={300} data={data}>
-          <CartesianGrid stroke="#ccc" />
-          <XAxis dataKey="user" />
-          <YAxis />
-          <Tooltip />
-          <Bar dataKey="value" fill="#8884d8" />
-        </BarChart>
-      )}
-      <button 
-        onClick={() => dispatch(closeModal())}
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-      >
-        Close
-      </button>
+      </div>
     </div>
   );
 }
