@@ -15,6 +15,16 @@ const dummyData = {
     { user: "user_2", value: 4 },
     { user: "user_3", value: 6 },
     { user: "user_4", value: 8 }
+  ],
+  "15-08-2025": [
+    { user: "Alice", value: 120 },
+    { user: "Bob", value: 80 },
+    { user: "Charlie", value: 95 }
+  ],
+  "20-08-2025": [
+    { user: "Alice", value: 150 },
+    { user: "Bob", value: 110 },
+    { user: "Charlie", value: 75 }
   ]
 };
 

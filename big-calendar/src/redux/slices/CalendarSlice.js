@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import dummyData from "../../data/dummyData";
-
 const initialState = {
-  events: dummyData,
+  events: {},
   selectedDate: null,
-  modalOpen: false
+  modalOpen: false,
+  loading: false
 };
 
 const calendarSlice = createSlice({
@@ -17,9 +16,16 @@ const calendarSlice = createSlice({
     },
     closeModal: (state) => {
       state.modalOpen = false;
+    },
+    setEvents: (state, action) => {
+      state.events = { ...state.events, ...action.payload };
+      state.loading = false;
+    },
+    setLoading: (state, action) => {
+      state.loading = action.payload;
     }
   }
 });
 
-export const { setSelectedDate, closeModal } = calendarSlice.actions;
+export const { setSelectedDate, closeModal, setEvents, setLoading } = calendarSlice.actions;
 export default calendarSlice.reducer;

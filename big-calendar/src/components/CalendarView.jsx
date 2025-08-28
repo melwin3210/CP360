@@ -1,18 +1,38 @@
-import React from "react";
+import  { useEffect } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import { useDispatch, useSelector } from "react-redux";
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import enUS from "date-fns/locale/en-US";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { setSelectedDate } from "../redux/slices/CalendarSlice";
+import { setSelectedDate, setEvents, setLoading } from "../redux/slices/CalendarSlice";
+import dummyData from "../data/dummyData";
+import CalendarShimmer from "./CalendarShimmer";
 
 const locales = { "en-US": enUS };
 const localizer = dateFnsLocalizer({ format, parse, startOfWeek, getDay, locales });
 
 export default function CalendarView() {
   const dispatch = useDispatch();
-  const eventsData = useSelector((state) => state.calendar.events);
+  const { events: eventsData, loading } = useSelector((state) => state.calendar);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        dispatch(setLoading(true));
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        const response = await fetch('data:application/json;base64,' + btoa(JSON.stringify(dummyData)));
+        const data = await response.json();
+        dispatch(setEvents(data));
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+        dispatch(setLoading(false));
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
 
   // Convert dummy data to events
   const events = Object.keys(eventsData).map((date) => {
@@ -28,6 +48,10 @@ export default function CalendarView() {
     const dateStr = format(start, "dd-MM-yyyy");
     dispatch(setSelectedDate(dateStr));
   };
+
+  if (loading) {
+    return <CalendarShimmer />;
+  }
 
   return (
     <Calendar
