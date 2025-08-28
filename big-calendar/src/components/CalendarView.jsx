@@ -35,7 +35,7 @@ export default function CalendarView() {
       events={events}
       startAccessor="start"
       endAccessor="end"
-      style={{ height: 600 }}
+      style={{ height: 450 }}
       selectable
       onSelectSlot={handleSelect}
       onSelectEvent={handleSelect}
