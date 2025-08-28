@@ -13,7 +13,7 @@ const calendarSlice = createSlice({
   reducers: {
     setSelectedDate: (state, action) => {
       state.selectedDate = action.payload;
-      state.modalOpen = !!state.events[action.payload];
+      state.modalOpen = true;
     },
     closeModal: (state) => {
       state.modalOpen = false;
