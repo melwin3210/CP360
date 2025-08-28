@@ -16,18 +16,8 @@ export default function BarChartModal() {
   }
 
   return (
-    <div style={{
-      position: "absolute",
-      top: "100px",
-      left: "50%",
-      transform: "translateX(-50%)",
-      background: "#fff",
-      padding: "20px",
-      border: "1px solid #ddd",
-      boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-      zIndex: 1000
-    }}>
-      <h2>Data for {selectedDate}</h2>
+    <div className="absolute top-24 left-1/2 transform -translate-x-1/2 bg-white p-6 border border-gray-300 shadow-lg rounded-lg z-50">
+      <h2 className="text-xl font-semibold mb-4">Data for {selectedDate}</h2>
       <BarChart width={500} height={300} data={data}>
         <CartesianGrid stroke="#ccc" />
         <XAxis dataKey="user" />
@@ -35,7 +25,12 @@ export default function BarChartModal() {
         <Tooltip />
         <Bar dataKey="value" fill="#8884d8" />
       </BarChart>
-      <button onClick={() => dispatch(closeModal())}>Close</button>
+      <button 
+        onClick={() => dispatch(closeModal())}
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+      >
+        Close
+      </button>
     </div>
   );
 }
