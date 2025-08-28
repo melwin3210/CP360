@@ -12,7 +12,7 @@ export default function BarChartModal() {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-2xl w-full mx-4">
+      <div className="bg-white p-4 sm:p-8 rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Data for {selectedDate}</h2>
         {!data ? (
           <div className="text-center py-12">
@@ -20,8 +20,8 @@ export default function BarChartModal() {
             <p className="text-gray-600 text-lg">No data found for the selected date.</p>
           </div>
         ) : (
-          <div className="flex justify-center mb-6">
-            <BarChart width={500} height={300} data={data}>
+          <div className="flex justify-center mb-6 overflow-x-auto">
+            <BarChart width={Math.min(500, window.innerWidth - 100)} height={300} data={data}>
               <CartesianGrid stroke="#e5e7eb" />
               <XAxis dataKey="user" />
               <YAxis />
