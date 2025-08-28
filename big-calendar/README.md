@@ -1,12 +1,84 @@
-# React + Vite
+# React Big Calendar with Bar Graph
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern calendar application built with React that displays interactive calendar events and shows detailed bar chart analytics when dates are clicked.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-  Interactive calendar with event highlighting
+-  Bar chart modal showing data analytics for selected dates
+-  Loading shimmer UI during data fetch
+-  Modern UI with Tailwind CSS
+-  Redux state management
+-  Responsive design
 
-## Expanding the ESLint configuration
+## Libraries Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Core Libraries
+- **React** - UI library
+- **Vite** - Build tool and development server
+- **React Big Calendar** - Calendar component
+- **Recharts** - Bar chart visualization
+- **Redux Toolkit** - State management
+- **React Redux** - React bindings for Redux
+- **date-fns** - Date utility library
+
+### Styling
+- **Tailwind CSS** - Utility-first CSS framework
+- **@tailwindcss/vite** - Vite plugin for Tailwind
+
+
+## Key Features Implementation
+
+### API Simulation
+- Mocked API responses using `fetch()` with data URLs
+- Simulated network delay for realistic loading experience
+- Error handling for failed API calls
+
+### Redux Store
+- Centralized state management for calendar events
+- Loading states for better UX
+- Modal state management
+- Event data persistence
+
+### UI/UX
+- Shimmer loading component mimicking calendar structure
+- Modal overlay with backdrop for chart display
+- Hover effects with pointer cursor on interactive elements
+- Warning messages for dates with no data
+
+## Getting Started
+
+### Installation
+```bash
+npm install
+```
+
+### Development
+```bash
+npm run dev
+# or
+npm start
+```
+
+### Build
+```bash
+npm run build
+
+
+### Preview Production Build
+```bash
+npm run preview
+# or
+npm run serve
+```
+
+
+
+## Cross-Platform Compatibility
+
+The application is designed to run smoothly on all operating systems:
+- Windows
+- macOS
+- Linux
+
+All dependencies are platform-agnostic and the build process works consistently across different environments.
